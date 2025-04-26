@@ -1,7 +1,15 @@
-import { Folder } from "../types/folder";
+"use client";
+
 import { mockFolders } from "../data/mockData";
+import { useFolder } from "../context/FolderContext";
 
 export default function Sidebar() {
+  const { currentFolder, setCurrentFolder } = useFolder();
+
+  const handleHomeClick = () => {
+    setCurrentFolder(null);
+  };
+
   return (
     <div className="w-64 h-screen bg-white border-r border-gray-200 p-4">
       <button className="w-full bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-2 mb-4 flex items-center justify-center gap-2">
@@ -21,7 +29,12 @@ export default function Sidebar() {
       </button>
 
       <div className="space-y-2">
-        <div className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg cursor-pointer">
+        <div
+          onClick={handleHomeClick}
+          className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer ${
+            !currentFolder ? "bg-gray-100" : "hover:bg-gray-100"
+          }`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 text-gray-500"
@@ -39,7 +52,12 @@ export default function Sidebar() {
             {mockFolders.map((folder) => (
               <div
                 key={folder.id}
-                className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg cursor-pointer"
+                onClick={() => setCurrentFolder(folder)}
+                className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer ${
+                  currentFolder?.id === folder.id
+                    ? "bg-gray-100"
+                    : "hover:bg-gray-100"
+                }`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

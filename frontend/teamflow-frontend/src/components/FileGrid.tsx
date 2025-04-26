@@ -1,14 +1,31 @@
-import { Folder, File } from "../types/folder";
+"use client";
+
 import { mockFolders, mockFiles } from "../data/mockData";
+import { useFolder } from "../context/FolderContext";
 
 export default function FileGrid() {
+  const { currentFolder, setCurrentFolder } = useFolder();
+
+  const currentFolders = mockFolders.filter(
+    (folder) => folder.parentId === (currentFolder?.id || null)
+  );
+
+  const currentFiles = mockFiles.filter(
+    (file) => file.parentId === (currentFolder?.id || null)
+  );
+
+  const handleFolderClick = (folder: (typeof mockFolders)[0]) => {
+    setCurrentFolder(folder);
+  };
+
   return (
     <div className="flex-1 p-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {mockFolders.map((folder) => (
+        {currentFolders.map((folder) => (
           <div
             key={folder.id}
-            className="flex flex-col items-center p-4 border rounded-lg hover:shadow-md cursor-pointer"
+            onClick={() => handleFolderClick(folder)}
+            className="flex flex-col items-center p-4 border rounded-lg hover:shadow-md cursor-pointer transition-all duration-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -28,10 +45,10 @@ export default function FileGrid() {
           </div>
         ))}
 
-        {mockFiles.map((file) => (
+        {currentFiles.map((file) => (
           <div
             key={file.id}
-            className="flex flex-col items-center p-4 border rounded-lg hover:shadow-md cursor-pointer"
+            className="flex flex-col items-center p-4 border rounded-lg hover:shadow-md cursor-pointer transition-all duration-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
