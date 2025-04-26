@@ -12,7 +12,7 @@ export default function Sidebar() {
 
   return (
     <div className="w-64 h-screen bg-white border-r border-gray-200 p-4">
-      <button className="w-full bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-2 mb-4 flex items-center justify-center gap-2">
+      <button className="w-full bg-rose-500 hover:bg-rose-600 text-white rounded-lg p-2 mb-4 flex items-center justify-center gap-2 transition-colors duration-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5"
@@ -32,12 +32,14 @@ export default function Sidebar() {
         <div
           onClick={handleHomeClick}
           className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer ${
-            !currentFolder ? "bg-gray-100" : "hover:bg-gray-100"
+            !currentFolder ? "bg-rose-50 text-rose-600" : "hover:bg-gray-100"
           }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-gray-500"
+            className={`h-5 w-5 ${
+              !currentFolder ? "text-rose-500" : "text-gray-500"
+            }`}
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -55,13 +57,17 @@ export default function Sidebar() {
                 onClick={() => setCurrentFolder(folder)}
                 className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer ${
                   currentFolder?.id === folder.id
-                    ? "bg-gray-100"
+                    ? "bg-rose-50 text-rose-600"
                     : "hover:bg-gray-100"
                 }`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-500"
+                  className={`h-5 w-5 ${
+                    currentFolder?.id === folder.id
+                      ? "text-rose-500"
+                      : "text-gray-500"
+                  }`}
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >

@@ -25,11 +25,11 @@ export default function FileGrid() {
           <div
             key={folder.id}
             onClick={() => handleFolderClick(folder)}
-            className="flex flex-col items-center p-4 border rounded-lg hover:shadow-md cursor-pointer transition-all duration-200"
+            className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:border-rose-200 hover:shadow-md cursor-pointer transition-all duration-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-16 w-16 text-gray-400"
+              className="h-16 w-16 text-rose-400"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -48,11 +48,11 @@ export default function FileGrid() {
         {currentFiles.map((file) => (
           <div
             key={file.id}
-            className="flex flex-col items-center p-4 border rounded-lg hover:shadow-md cursor-pointer transition-all duration-200"
+            className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:border-rose-200 hover:shadow-md cursor-pointer transition-all duration-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-16 w-16 text-gray-400"
+              className="h-16 w-16 text-rose-400"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
