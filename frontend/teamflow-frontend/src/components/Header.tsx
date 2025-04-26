@@ -34,7 +34,7 @@ export default function Header() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <h1 className="text-2xl font-normal text-gray-900">
-                Welcome to Drive
+                Welcome to Team Flow
               </h1>
               <Breadcrumb currentFolder={null} />
             </div>
